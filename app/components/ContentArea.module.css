@@ -1,0 +1,28 @@
+.contentArea {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+.titlePage {
+  display: flex;
+  margin: 1rem 1rem 0 1rem;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.chartsArea {
+  margin: 1rem;
+}
+
+.actions {
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionIcons {
+  display: flex;
+  gap: 0.5rem;
+}
