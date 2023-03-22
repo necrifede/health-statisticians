@@ -2,10 +2,16 @@
 
 import { Chart } from '@antv/g2';
 import { useEffect, useRef } from 'react';
+import { deathByPeriods } from '../utils/dates';
+import { Cases } from '../types';
 
-export default function G2Demo() {
-  const container = useRef(null);
-  const chart = useRef(null);
+interface Props {
+  data: Cases[];
+}
+
+export default function G2Demo({ data: dataProp }: Props) {
+  const container = useRef<HTMLDivElement | null>(null);
+  const chart = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!chart.current) {
@@ -13,55 +19,57 @@ export default function G2Demo() {
     }
   }, []);
 
-  function renderBarChart(container) {
+  const data = deathByPeriods(dataProp);
+
+  function renderBarChart(container: HTMLDivElement) {
     const chart = new Chart({
       container,
+      width: 400,
+      height: 320,
+      paddingLeft: 35,
     });
 
-    // 准备数据
-    const data = [
-      { genre: 'Sports', sold: 275 },
-      { genre: 'Strategy', sold: 115 },
-      { genre: 'Action', sold: 120 },
-      { genre: 'Shooter', sold: 350 },
-      { genre: 'Other', sold: 150 },
-    ];
+    chart.coordinate({ type: 'theta', innerRadius: 0.25, outerRadius: 0.8 });
 
-    // 声明可视化
-    chart
-      .interval() // 创建一个 Interval 标记
-      .data(data) // 绑定数据
-      .encode('x', 'genre') // 编码 x 通道
-      .encode('y', 'sold') // 编码 y 通道
-      .encode('key', 'genre') // 指定 key
-      .animate('updateDuration', 300); // 指定更新动画的时间
+    chart.interval()
+    .data(data)
+    .transform({ type: 'stackY' })
+    .encode('y', 'number')
+    .encode('color', 'period')
+    .scale('color', {
+      range: ['#e8c1a0', '#f47560', '#f1e15b', '#e8a838', '#61cdbb'],
+    })
+    .label({
+      text: 'number',
+      style: {
+        fontWeight: 'bold',
+        offset: 14,
+      },
+    })
+    .label({
+      text: 'period',
+      position: 'spider',
+      connectorDistance: 0,
+      style: {
+        fontWeight: 'bold',
+        textBaseline: 'bottom',
+        textAlign: (d) => (['c', 'sass'].includes(d.id) ? 'end' : 'start'),
+        dy: -4,
+      },
+    })
+    .style('stroke', '#fff')
+    .animate('enter', { type: 'waveIn' })
+    .style('radius', 4)
+    .legend(false);
 
-    // 渲染可视化
     chart.render();
 
     return chart;
   }
 
-  function updateBarChart(chart) {
-    // 获得 Interval Mark
-    const interval = chart.getNodesByType('interval')[0];
-
-    // 模拟并且更新 Interval 的数据
-    const newData = interval.data().map((d) => ({
-      ...d,
-      sold: Math.random() * 400 + 100,
-    }));
-
-    interval.data(newData);
-
-    // 重新渲染
-    chart.render();
-  }
-
   return (
-    <div className="App">
+    
       <div ref={container}></div>
-      <button onClick={() => updateBarChart(chart.current)}>Update Data</button>
-    </div>
+    
   );
 }

@@ -16,7 +16,7 @@ Divided in two types:
 
 - [x] The page will consist from page header and content area
 - [x] Page header contains only title
-- [ ] Content area contains two cards with charts (any chart type is possible) with dummy avatar and dummy button as per picture
+- [x] Content area contains two cards with charts (any chart type is possible) with dummy avatar and dummy button as per picture
 - [x] Above charts, there is a space (a panel) for Page title and dummy buttons (as per design, without any logic behind)
 - [ ] [OPTIONAL] Add a heart icon (not on design below/mockup!) to cards which allows visitors to select card as a favorite (use [trpc](https://trpc.io/) for this feature)
 - [ ] Deploy application on [vercel](https://vercel.com/) (free tier, custom domain not required)
@@ -38,4 +38,5 @@ Divided in two types:
 
 - [ ] Update fonts, check handling fonts.
 - [ ] @antv/g2 is a heavy package, see how to make it light.
-- [ ] 
+- [ ] Add Loader component -spinners- to be displayed while charts are loading.
+- [ ] Unify styles.

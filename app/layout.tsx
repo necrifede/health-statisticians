@@ -11,6 +11,7 @@ export const metadata = {
 const appTitle = 'App Title';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en">
       <body className={inter.className}>

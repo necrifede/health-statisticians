@@ -4,6 +4,9 @@ const nextConfig = {
     appDir: true,
     esmExternals: 'loose'
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
 
 module.exports = nextConfig

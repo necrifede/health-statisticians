@@ -1,3 +1,4 @@
+'use client';
 import { Button, Card, Space, Avatar } from 'antd';
 import {
   DownloadOutlined,
@@ -6,14 +7,14 @@ import {
   CommentOutlined,
   HeartTwoTone,
   HeartOutlined,
-  HeartFilled
 } from '@ant-design/icons';
 import styles from './ContentArea.module.css';
 import G2Demo from './G2Demo';
+import G2DeathByPeriods from './G2DeathByPeriods';
 
 const pageTitle = 'Page Title';
 
-export default function ContentArea() {
+export default function ContentArea({ data = [] }) {
   return (
     <Space className={styles.contentArea} direction="vertical" size={16}>
       <Space className={styles.titlePage}>
@@ -26,7 +27,7 @@ export default function ContentArea() {
       </Space>
       <Space className={styles.chartsArea}>
         <Card
-          title="Chart Title 1"
+          title="Deaths per semester"
           style={{ maxWidth: '36rem' }}
           actions={[
             <div key="actions" className={styles.actions}>
@@ -38,12 +39,10 @@ export default function ContentArea() {
             </div>,
           ]}
         >
-          <p>Card content asfsa fsa as fas fdsa f asdfsaf a safd a asdf sad f safasfasf as as fas fsa fsa fas</p>
-          <p>Card content</p>
-          <p>Card content</p>
+          <G2DeathByPeriods data={data} />
         </Card>
         <Card
-          title="Chart Title 2"
+          title="Deaths by proportion"
           style={{ maxWidth: '36rem' }}
           actions={[
             <div key="actions" className={styles.actions}>
@@ -55,7 +54,7 @@ export default function ContentArea() {
             </div>,
           ]}
         >
-          <G2Demo />
+          <G2Demo data={data} />
         </Card>
       </Space>
     </Space>
