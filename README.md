@@ -19,7 +19,7 @@ Divided in two types:
 - [x] Content area contains two cards with charts (any chart type is possible) with dummy avatar and dummy button as per picture
 - [x] Above charts, there is a space (a panel) for Page title and dummy buttons (as per design, without any logic behind)
 - [ ] [OPTIONAL] Add a heart icon (not on design below/mockup!) to cards which allows visitors to select card as a favorite (use [trpc](https://trpc.io/) for this feature)
-- [ ] Deploy application on [vercel](https://vercel.com/) (free tier, custom domain not required)
+- [x] Deploy application on [vercel](https://vercel.com/) (free tier, custom domain not required)
 - [ ] Share url for live demo. (?? ask about this task)
 
 ### Learning tasks
